@@ -1,6 +1,6 @@
 package com.TeamTech.Team.Model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +15,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "coach")
+@Table(name = "coaches")
 public class Coach {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @Column(nullable = false, unique = true)
+    private String password;
 
+
+    @ManyToMany(mappedBy = "assistantCoaches")
     private List<Team> coachesAt;
-
-
-
-
-
-
-
 
 
 }
